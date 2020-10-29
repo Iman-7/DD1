@@ -68,7 +68,7 @@ int main() {
     }
 
     // checking that the data entry is working
-    cout << "the number of var is: " << n << endl;
+    cout << "the number of variables is: " << n << endl;
     
     cout << "the minterms are: ";
     for (int i = 0; i < minterms.size(); i++)
