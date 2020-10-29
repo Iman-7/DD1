@@ -62,7 +62,6 @@ int main() {
                     
                 }
 
-            //}
             file.close();
 
     }
