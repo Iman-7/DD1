@@ -1,0 +1,2 @@
+C:\Users\Dell\source\repos\DD1-project\Debug\DD1-project.exe
+C:\Users\Dell\source\repos\DD1-project\Debug\DD1-project.pdb
