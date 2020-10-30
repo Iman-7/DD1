@@ -1,4 +1,2 @@
 ﻿  trial.cpp
-C:\Users\Dell\source\repos\DD1-project\trial.cpp(86,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\trial.cpp(102,22): warning C4018: '<': signed/unsigned mismatch
   DD1-project.vcxproj -> C:\Users\Dell\source\repos\DD1-project\Debug\DD1-project.exe

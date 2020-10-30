@@ -1,13 +1,14 @@
-/*#include <iostream>
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <sstream> // to use string stream
 //#include <bits/stdc++.h> //to use set intersection (STL)
 #include <algorithm> // to use set intersection function
-bool validation(vector <int>&, vector<int>&);
-
 using namespace std;
+
+bool validation(vector <int> v1, vector<int> v2);
+
 
 
 int main() {
@@ -89,11 +90,11 @@ int main() {
     for (int i = 0; i < dontcare.size(); i++)
         cout << dontcare[i] << "\t";
     */
-    /*
+  
         return 0;
     }
 
-    bool validation(vector <int> &v1, vector <int> &v2)
+    bool validation(vector <int> v1, vector <int> v2)
     {
         //a vector to store the common elements between the minterms and the don't care terms vectors (if any)
         vector<int> val(v1.size() + v2.size());
@@ -113,7 +114,7 @@ int main() {
          for (it = val.begin(); it != out; it++)
              cout << *it << " - ";
          cout << "cannot be minterms and don't care terms at the time!" << endl;*/
-         //}
+         }
 
 
 

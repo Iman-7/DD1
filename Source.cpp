@@ -5,9 +5,9 @@
 #include <sstream> // to use string stream
 #include <bits/stdc++.h> //to use set intersection (STL) 
 //#include <algorithm> // to use set intersection function
-
-
 using namespace std;
+
+bool validation(vector <int> v1, vector<int> v2);
 
 
 int main() {
@@ -116,6 +116,28 @@ int main() {
          cout << dontcare[i] << "\t";
      */
     return 0;
+}
+
+bool validation(vector <int> v1, vector <int> v2)
+{
+    //a vector to store the common elements between the minterms and the don't care terms vectors (if any)
+    vector<int> val(v1.size() + v2.size());
+
+    //an iterator to traverse the vector
+    vector<int>::iterator it, out;
+
+    sort(v1.begin(), v1.end());
+    sort(v2.begin(), v2.end());
+
+    out = set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), val.begin());
+
+    if (val.size() > 0) // not correct 5alesssssssssssssssssssssss 34an el size keda keda hayb2a el sum bta3 el 2 sizes btoo3 el two vectors el tanyeen
+        return true;
+    return false;
+    /* cout << "Error! The element(s) ";
+     for (it = val.begin(); it != out; it++)
+         cout << *it << " - ";
+     cout << "cannot be minterms and don't care terms at the time!" << endl;*/
 }
 
 
