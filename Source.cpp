@@ -4,9 +4,9 @@
 #include <vector>
 #include <sstream> // to use string stream
 #include <bits/stdc++.h> //to use set intersection (STL) 
-//#include <algorithm> // to use set intersection function
-#include <set>
 #include <cmath>
+#include <unordered_set>
+#include <unordered_map>
 using namespace std;
 
 bool validation(vector <int>, vector<int>);
@@ -14,12 +14,8 @@ string decimalTobinary(int);
 string pad(string, int);
 bool isGreyCode(string, string);
 string replace(string, string);
-//int BinaryToDecimal(string);
-void getMinterms(set<int>&, string, int, int);
-
-//void decimalTobinary(int, vector<int>, vector<string>&);
-//int countones(vector<string> d);
-//void reorder(vector<vector<int>>&, int);
+void getMinterms(unordered_set<int>&, string, int, int);
+string get_exp(string, const vector <string>);
 
 
 int main() {
@@ -94,7 +90,7 @@ int main() {
     out = set_intersection(minterms.begin(), minterms.end(), dontcare.begin(), dontcare.end(), val.begin());
 
     int validation_size = 0;
-    for (int i = 0; i < val.size(); i++) //still have a problem!!! what if the common elemnt was zero????
+    for (int i = 0; i < val.size(); i++) 
         if ((val[i]) != 0)
             validation_size++;
 
@@ -108,37 +104,15 @@ int main() {
     }
 
 
-    //print validation vector that stores all the common elements (if any)
-    //just to understand - delte it later
-    // for (int i = 0; i < val.size(); i++)
-    //    cout << ((val[i]!=0)?val[i]:-1) << " ";
-
-    /*
-
-     // checking that the data entry is working
-     cout << "the number of variables is: " << n << endl;
-
-     cout << "the minterms are: ";
-     for (int i = 0; i < minterms.size(); i++)
-     cout << minterms[i] << "\t";
-     cout << endl;
-
-     cout << "the don't care terms are: ";
-     for (int i = 0; i < dontcare.size(); i++)
-     cout << dontcare[i] << "\t";
-     */
-
-     // Rawan Partttttttttttt
-
-
-
-
     vector<int> total_decimal(minterms.size() + dontcare.size()); // a vector that contains all the minterms and the don't care terms in decimal (Basically the first column of the implication table)
     vector <string> total_binary(total_decimal.size());
     vector<string> first_column(total_binary.size());
     vector <string> second_column;
     vector <string> pi;
-
+    vector<string> expression_var;
+    string letters[] = { "a","b","c","d","e","f","g","h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t" };
+    for (int i = 0; i < n; i++)
+        expression_var.push_back(letters[i]);
 
     for (int i = 0; i < minterms.size(); i++) {
         total_decimal[i] = (minterms[i]);
@@ -151,38 +125,13 @@ int main() {
     }
 
 
-    /*decimalTobinary(n, total_decimal, total_binary); //no. of inputs, v, v
-     for (int i = 0; i < total_decimal.size(); i++)
-     {
-     cout << total_binary[i];
-     cout << endl;
-     }
-     */
-     // decimalTobinary(n, total, first); //edit it
-
-     /* for (int i = 0; i < first.size(); i++)
-      reorder(first, n);
-
-
-      for (int i = 0; i < first.size(); i++)
-      {
-      for (int j = 0; j < n; j++) {
-      cout << first[i][j];
-      }
-      cout << endl;
-      }
-      */
-
-
     for (int i = 0; i < total_decimal.size(); i++)
     {
         total_binary[i] = decimalTobinary(total_decimal[i]);
-        //cout << total_binary[i];
-        //cout << endl;
+       
     }
-    //cout << "bla bla " << endl;
 
-    cout << "The binary equivalents of minterms and don't care terms are: " << endl;
+    cout << "The binary equivalents of minterms and don't care terms are (First Column): " << endl;
     for (int i = 0; i < total_binary.size(); i++)
     {
         first_column[i] = pad(total_binary[i], n);
@@ -227,23 +176,38 @@ int main() {
         pi.push_back(unchecked[i]);
     }
     pi.erase(std::unique(pi.begin(), pi.end()), pi.end());
+
     cout << "The  Prime Implicants (PIs) are: " << endl;
     for (int i = 0; i < pi.size(); i++) {
         cout << pi[i] << endl;
     }
-    
-// creating the pi chart to find the EPIs 
-    set<int> mins; //mins & dontcares from pis
+
+    vector<int> temp_pi;
+
+    cout << "The  minterms of Prime Implicants are (correspondingly) : " << endl;
+    for (int i = 0; i < pi.size(); i++) {
+        unordered_set<int> pis;
+        getMinterms(pis, pi[i], 0, n - 1); 
+        for (int j = 0; j < total_decimal.size(); j++) {
+            for (int element : pis) {
+                if (element == total_decimal[j])
+                    temp_pi.push_back(element);
+
+            }
+        }
+        for (int element : pis)
+            cout << element << "  ";
+        cout << endl;
+    }
+
+// Finding EPIs 
+
     
     vector <int> temp_epi;
 
-    /*int** pi_chart = new int*[pi.size()];  // the rows will be represnted by the PIs size
-    for (int i = 0; i < pi.size(); ++i)
-        pi_chart[i] = new int[pow(2, n)]; // the columns will be represnted by the minterms size
- */
-
    for (int i = 0; i < pi.size(); i++) {
-       getMinterms(mins, pi[i], 0, n - 1); // mins bt create new wla bt-add
+       unordered_set<int> mins;
+       getMinterms(mins, pi[i], 0, n - 1); 
         for (int j = 0; j < minterms.size(); j++) {
            for (int element : mins) {
                if (element == minterms[j])
@@ -253,19 +217,62 @@ int main() {
         }
     }
 
-   cout << "epis and not covered" << endl;
-   for (int i = 0; i < temp_epi.size(); i++) {
-       cout << temp_epi[i] << endl;
+   unordered_map<int, int> freq;
+   vector<int> not_covered, epi;
+
+   for (int i = 0; i < temp_epi.size(); ++i) {
+       if (freq.find(temp_epi[i]) == freq.end())
+           freq[temp_epi[i]] = 1;
+       else
+           freq[temp_epi[i]]++;
+   }
+
+   for (pair<int, int> e : freq) {
+       if (e.second == 1)
+           epi.push_back(e.first);
+       else
+           not_covered.push_back(e.first);
+   }
+
+   cout << "EPIs are: " << endl;
+   for (int i = 0; i < epi.size(); i++) {
+       cout << epi[i] << endl;
+   }
+
+   cout << "The boolean expression of epis are: " << endl;
+   for (int i = 0; i < epi.size(); i++)
+       cout << get_exp(pad(decimalTobinary(epi[i]), n), expression_var) << endl;
+
+   cout << "The minterms that are not covered by the essential PIs. are: " << endl;
+   for (int i = 0; i < not_covered.size(); i++) {
+       cout << not_covered[i] << endl;
    }
 
     return 0;
 }
 
-void getMinterms(set<int>& mins, string bin, int current, int index) {
+//generating the boolean expressions, for example: -11- becomes bc
+string get_exp(string a, const vector <string> v)
+{
+    string temp = "";
+
+    for (int i = 0; i < a.length(); i++)
+    {
+        if (a[i] != '-')
+        {
+            if (a[i] == '0')
+                temp = temp + v[i] + "\'";
+            else
+                temp = temp + v[i];
+        }
+    }
+    return temp;
+}
+void getMinterms(unordered_set<int>& mins, string bin, int current, int index) {
     //001-01
     for (int i = index; i >= 0; --i) {
         if (bin[i] == '1') {
-            current += pow(2, bin.length() - index - 1);
+            current += pow(2, bin.length() - i - 1);
         }
         else if (bin[i] == '-') {
             bin[i] = '0';
@@ -277,29 +284,6 @@ void getMinterms(set<int>& mins, string bin, int current, int index) {
     if (mins.find(current) == mins.end())
         mins.insert(current);
 }
-
-bool validation(vector <int> v1, vector <int> v2)
-{
-    //a vector to store the common elements between the minterms and the don't care terms vectors (if any)
-    vector<int> val(v1.size() + v2.size());
-
-    //an iterator to traverse the vector
-    vector<int>::iterator it, out;
-
-    sort(v1.begin(), v1.end());
-    sort(v2.begin(), v2.end());
-
-    out = set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), val.begin());
-
-    if (val.size() > 0) // not correct 5alesssssssssssssssssssssss 34an el size keda keda hayb2a el sum bta3 el 2 sizes btoo3 el two vectors el tanyeen
-        return true;
-    return false;
-    /* cout << "Error! The element(s) ";
-     for (it = val.begin(); it != out; it++)
-     cout << *it << " - ";
-     cout << "cannot be minterms and don't care terms at the time!" << endl;*/
-}
-
 
 string decimalTobinary(int var) {
     if (var == 0)
@@ -319,59 +303,6 @@ string pad(string binary, int var)
         binary = "0" + binary;
     return binary;
 }
-
-/*void decimalTobinary(int var, vector<int> decimal, vector<string>& string_b) {
-
- int k;
-
- for (int i = 0; i < decimal.size(); i++)
- {
- string_b[i] = "";
- for (int j = var - 1; j >= 0; j--)
- {
- k = decimal[i] >> j;
- if (k & 1)
- string_b[i] = string_b[i] + "1";
- else
- string_b[i]= string_b[i] + "0";
- }
-
- }
- }*/
-
- /*int countones(vector<string> d) {
-  int count = 0;
-  for (int i = 0; i < d.size(); i++) {
-  for (int j=0; j<d[i].size(); j++)
-  if (d[i][j] == 1) {
-  count++;
-  }
-  }
-  return count;
-  }
-  void reorder(vector<vector<int>>& d, int var) {
-  vector<int> v;
-
-  vector<int> v1;
-  for (int i = 0; i < d.size(); i++)
-  {
-  for (int j = 0; j < var; j++) {
-  if (i == d.size() - 1)
-  break;
-  v.push_back(d[i][j]);
-  v1.push_back(d[i + 1][j]);
-
-  }
-
-
-  if (countones(v) > countones(v1))
-  swap(d[i], d[i + 1]);
-
-  v.clear();
-  v1.clear();
-
-  }
-  }*/
 
 bool isGreyCode(string s1, string s2) {
 

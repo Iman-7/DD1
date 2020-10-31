@@ -1,21 +1,27 @@
 ﻿  Source.cpp
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(97,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(93,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(117,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(122,37): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(128,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(137,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Dell\source\repos\DD1-project\Source.cpp(143,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(148,37): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(144,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(150,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(157,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(158,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(172,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Dell\source\repos\DD1-project\Source.cpp(177,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(186,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(192,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(193,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(199,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(206,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(207,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(221,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(226,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(231,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(183,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(190,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(193,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(210,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(213,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(225,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(240,22): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Dell\source\repos\DD1-project\Source.cpp(245,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(247,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(257,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(269,56): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(380,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(391,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(249,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(261,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(277,52): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(388,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(399,23): warning C4018: '<': signed/unsigned mismatch
   DD1-project.vcxproj -> C:\Users\Dell\source\repos\DD1-project\Debug\DD1-project.exe
