@@ -17,12 +17,17 @@ using namespace std;
 
 
 
+
+
 bool validation(vector <int>, vector<int>);
 string decimalTobinary(int);
 string pad(string, int);
+bool isGreyCode(string, string);
+string replace(string, string);
 
 //void decimalTobinary(int, vector<int>, vector<string>&);
-void reorder(vector<vector<int>>&, int);
+//int countones(vector<string> d);
+//void reorder(vector<vector<int>>&, int);
 
 
 int main() {
@@ -111,15 +116,36 @@ int main() {
     }
     
     
+    //print validation vector that stores all the common elements (if any)
+    //just to understand - delte it later
+    // for (int i = 0; i < val.size(); i++)
+    //    cout << ((val[i]!=0)?val[i]:-1) << " ";
+    
+    /*
      
+     // checking that the data entry is working
+     cout << "the number of variables is: " << n << endl;
      
+     cout << "the minterms are: ";
+     for (int i = 0; i < minterms.size(); i++)
+     cout << minterms[i] << "\t";
+     cout << endl;
+     
+     cout << "the don't care terms are: ";
+     for (int i = 0; i < dontcare.size(); i++)
+     cout << dontcare[i] << "\t";
+     */
+    
+    // Rawan Partttttttttttt
     
     
     
     
-    vector<int> total_decimal (minterms.size()+dontcare.size()); // a vector that contains all the minterms and the don't care terms in decimal (Basically the first column of the implication table)
-    vector <string> total_binary (total_decimal.size());
+    vector<int> total_decimal(minterms.size() + dontcare.size()); // a vector that contains all the minterms and the don't care terms in decimal (Basically the first column of the implication table)
+    vector <string> total_binary(total_decimal.size());
     vector<string> first_column(total_binary.size());
+    vector <string> second_column;
+    vector <string> pi;
     
     
     for (int i = 0; i < minterms.size(); i++) {
@@ -159,18 +185,58 @@ int main() {
     for (int i = 0; i < total_decimal.size(); i++)
     {
         total_binary[i]= decimalTobinary(total_decimal[i]);
-        
+        //cout << total_binary[i];
+        //cout << endl;
     }
+    //cout << "bla bla " << endl;
     
-    
+    cout << "The binary equivalents of minterms and don't care terms are: " << endl;
     for (int i = 0; i < total_binary.size(); i++)
     {
         first_column[i] = pad(total_binary[i], n);
         cout << first_column[i] << endl;
     }
     
+    for (int i = 0; i < first_column.size(); i++) {
+        for (int j = i+1; j < first_column.size(); j++)
+            if (isGreyCode(first_column[i], first_column[j]))
+                second_column.push_back (replace(first_column[i], first_column[j]));
+    }
+    
+    cout << "The Second Column is : " << endl;
+    for (int i = 0; i < second_column.size(); i++) {
+        cout << second_column[i] << endl;
+    }
+    
+    vector<string> unchecked;
+    vector<string> temp;
+    int* checked = new int[second_column.size()];
+    for (int i = 0; i < second_column.size(); i++) {
+        for (int j = i + 1; j < second_column.size(); j++){
+            if (isGreyCode(second_column[i], second_column[j]))
+            { checked[i]=1;
+                checked[j] = 1;
+                pi.push_back(replace(second_column[i], second_column[j]));}
+            
+            if(checked[i] != 1 )
+                temp.push_back(second_column[i]);
+        }
+    }
     
     
+    for(int i=0;i<second_column.size();i++)
+    {
+        if(checked[i]!=1 && temp[i]!= second_column[i])
+            unchecked.push_back(second_column[i]);
+    }
+    pi.erase(std::unique(pi.begin(), pi.end()), pi.end());
+    cout << "The  Prime Implicants (PIs) are: " << endl;
+    for (int i = 0; i < pi.size(); i++) {
+        cout << pi[i] << endl;
+    }
+    for (int i = 0; i < unchecked.size(); i++) {
+        cout << unchecked[i] << endl;
+    }
     return 0;
 }
 
@@ -187,7 +253,7 @@ bool validation(vector <int> v1, vector <int> v2)
     
     out = set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), val.begin());
     
-    if (val.size() > 0) /
+    if (val.size() > 0) // not correct 5alesssssssssssssssssssssss 34an el size keda keda hayb2a el sum bta3 el 2 sizes btoo3 el two vectors el tanyeen
         return true;
     return false;
     /* cout << "Error! The element(s) ";
@@ -235,35 +301,59 @@ string pad(string binary, int var)
  }
  }*/
 
-int countones(vector<int> d) {
-    int count = 0;
-    for (int i = 0; i < d.size(); i++) {
-        if (d[i] == 1) {
-            count++;
-        }
-    }
-    return count;
-}
-void reorder(vector<vector<int>>& d, int var) {
-    vector<int> v;
+/*int countones(vector<string> d) {
+ int count = 0;
+ for (int i = 0; i < d.size(); i++) {
+ for (int j=0; j<d[i].size(); j++)
+ if (d[i][j] == 1) {
+ count++;
+ }
+ }
+ return count;
+ }
+ void reorder(vector<vector<int>>& d, int var) {
+ vector<int> v;
+ 
+ vector<int> v1;
+ for (int i = 0; i < d.size(); i++)
+ {
+ for (int j = 0; j < var; j++) {
+ if (i == d.size() - 1)
+ break;
+ v.push_back(d[i][j]);
+ v1.push_back(d[i + 1][j]);
+ 
+ }
+ 
+ 
+ if (countones(v) > countones(v1))
+ swap(d[i], d[i + 1]);
+ 
+ v.clear();
+ v1.clear();
+ 
+ }
+ }*/
+
+bool isGreyCode(string s1, string s2) {
     
-    vector<int> v1;
-    for (int i = 0; i < d.size(); i++)
+    int flag = 0;
+    for (int i = 0; i < s1.length(); i++)
     {
-        for (int j = 0; j < var; j++) {
-            if (i == d.size() - 1)
-                break;
-            v.push_back(d[i][j]);
-            v1.push_back(d[i + 1][j]);
-            
-        }
-        
-        
-        if (countones(v) > countones(v1))
-            swap(d[i], d[i + 1]);
-        
-        v.clear();
-        v1.clear();
-        
+        if (s1[i] != s2[i])
+            flag++;
     }
+    return (flag == 1);
+}
+
+string replace(string s1, string s2)
+{
+    string temp = "";
+    for (int i = 0; i < s1.length(); i++)
+        if (s1[i] != s2[i])
+            temp = temp + "-";
+        else
+            temp = temp + s1[i];
+    
+    return temp;
 }
