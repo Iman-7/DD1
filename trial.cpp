@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -90,7 +90,7 @@ int main() {
     for (int i = 0; i < dontcare.size(); i++)
         cout << dontcare[i] << "\t";
     */
-  
+  /*
         return 0;
     }
 
@@ -114,7 +114,7 @@ int main() {
          for (it = val.begin(); it != out; it++)
              cout << *it << " - ";
          cout << "cannot be minterms and don't care terms at the time!" << endl;*/
-         }
+         //}
 
 
 

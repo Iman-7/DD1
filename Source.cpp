@@ -5,14 +5,23 @@
 #include <sstream> // to use string stream
 #include <bits/stdc++.h> //to use set intersection (STL) 
 //#include <algorithm> // to use set intersection function
+
 using namespace std;
 
-bool validation(vector <int> v1, vector<int> v2);
+bool validation(vector <int>, vector<int>);
+string decimalTobinary(int);
+string pad(string, int);
+bool isGreyCode(string, string);
+string replace(string, string);
+
+//void decimalTobinary(int, vector<int>, vector<string>&);
+//int countones(vector<string> d);
+//void reorder(vector<vector<int>>&, int);
 
 
 int main() {
 
-    ifstream file("C:/Users/Dell/Desktop/Fall 2020/Digital Design 1/Projects/case1.txt");
+    ifstream file("C:/Users/Dell/Desktop/Fall 2020/Digital Design 1/Projects/case4.txt");
     string line; //a string variable used to store the values seperated with commas
     string nn, mm, dd; // to recive the values from the file (nn: no. of variables, mm: minterms, dd: don't care terms)
 
@@ -115,7 +124,81 @@ int main() {
      for (int i = 0; i < dontcare.size(); i++)
          cout << dontcare[i] << "\t";
      */
-    return 0;
+
+     // Rawan Partttttttttttt
+
+
+
+
+    vector<int> total_decimal(minterms.size() + dontcare.size()); // a vector that contains all the minterms and the don't care terms in decimal (Basically the first column of the implication table)
+    vector <string> total_binary(total_decimal.size());
+    vector<string> first_column(total_binary.size());
+    vector <string> pi(first_column.size());
+
+    
+    for (int i = 0; i < minterms.size(); i++) {
+        total_decimal[i] = (minterms[i]);
+    }
+
+    int c = 0;
+    for (int k = minterms.size(); k < total_decimal.size(); k++) {
+                total_decimal[k] = (dontcare[c]);
+                c++;
+    }
+
+
+ /*decimalTobinary(n, total_decimal, total_binary); //no. of inputs, v, v
+    for (int i = 0; i < total_decimal.size(); i++)
+    {
+        cout << total_binary[i];
+        cout << endl;
+    }
+   */ 
+   // decimalTobinary(n, total, first); //edit it
+
+    /* for (int i = 0; i < first.size(); i++)
+    reorder(first, n);
+
+
+    for (int i = 0; i < first.size(); i++)
+    {
+        for (int j = 0; j < n; j++) {
+            cout << first[i][j];
+        }
+        cout << endl;
+    }
+    */
+    
+    
+    for (int i = 0; i < total_decimal.size(); i++)
+    {
+        total_binary[i]= decimalTobinary(total_decimal[i]);
+        //cout << total_binary[i];
+        //cout << endl;
+    }
+    //cout << "bla bla " << endl;
+  
+    cout << "The binary equivalents of minterms and don't care terms are: " << endl;
+  for (int i = 0; i < total_binary.size(); i++)
+    {
+       first_column[i] = pad(total_binary[i], n);
+        cout << first_column[i] << endl;
+    }
+
+
+   for (int i = 0; i < first_column.size(); i++) {
+      for (int j = 1; j < first_column.size(); j++)
+       if (isGreyCode(first_column[i], first_column[j]))
+           pi[i] = replace(first_column[i], first_column[j]);
+   }
+
+   cout << "The Prime Implicants are: " << endl;
+   for (int i = 0; i < pi.size(); i++) {
+      cout << pi[i] << endl;
+   }
+
+    
+    return 0; 
 }
 
 bool validation(vector <int> v1, vector <int> v2)
@@ -140,5 +223,100 @@ bool validation(vector <int> v1, vector <int> v2)
      cout << "cannot be minterms and don't care terms at the time!" << endl;*/
 }
 
+
+string decimalTobinary(int var) {
+    if (var == 0)
+        return var + "";
+
+    if (var % 2 == 0)
+        return decimalTobinary(var / 2) + "0";
+    else
+        return decimalTobinary(var / 2) + "1";
+
+}
+
+string pad(string binary, int var)
+{
+    int diff = var - binary.length();
+    for (int i = 0; i < diff; i++)
+        binary = "0" + binary;
+    return binary;
+}
+
+/*void decimalTobinary(int var, vector<int> decimal, vector<string>& string_b) {
+   
+    int k;
+
+               for (int i = 0; i < decimal.size(); i++)
+               {
+                   string_b[i] = "";
+                   for (int j = var - 1; j >= 0; j--)
+                   {
+                       k = decimal[i] >> j;
+                       if (k & 1)
+                           string_b[i] = string_b[i] + "1";
+                       else
+                           string_b[i]= string_b[i] + "0";
+                   }
+
+               }
+}*/
+
+/*int countones(vector<string> d) {
+    int count = 0;
+    for (int i = 0; i < d.size(); i++) {
+        for (int j=0; j<d[i].size(); j++)
+        if (d[i][j] == 1) {
+            count++;
+        }
+    }
+    return count;
+}
+void reorder(vector<vector<int>>& d, int var) {
+    vector<int> v;
+
+    vector<int> v1;
+    for (int i = 0; i < d.size(); i++)
+    {
+        for (int j = 0; j < var; j++) {
+            if (i == d.size() - 1)
+                break;
+            v.push_back(d[i][j]);
+            v1.push_back(d[i + 1][j]);
+
+        }
+
+
+        if (countones(v) > countones(v1))
+            swap(d[i], d[i + 1]);
+
+        v.clear();
+        v1.clear();
+
+    }
+}*/
+
+bool isGreyCode(string s1, string s2) {
+
+    int flag = 0;
+    for (int i = 0; i < s1.length(); i++)
+    {
+        if (s1[i] != s2[i])
+            flag++;
+    }
+    return (flag == 1);
+}
+
+string replace(string s1, string s2)
+{
+    string temp = "";
+    for (int i = 0; i < s1.length(); i++)
+        if (s1[i] != s2[i])
+            temp = temp + "-";
+        else
+            temp = temp + s1[i];
+
+    return temp;
+}
 
 
