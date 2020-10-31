@@ -21,7 +21,7 @@ string replace(string, string);
 
 int main() {
 
-    ifstream file("C:/Users/Dell/Desktop/Fall 2020/Digital Design 1/Projects/case4.txt");
+    ifstream file("C:/Users/Dell/Desktop/Fall 2020/Digital Design 1/Projects/case5.txt");
     string line; //a string variable used to store the values seperated with commas
     string nn, mm, dd; // to recive the values from the file (nn: no. of variables, mm: minterms, dd: don't care terms)
 
@@ -133,7 +133,8 @@ int main() {
     vector<int> total_decimal(minterms.size() + dontcare.size()); // a vector that contains all the minterms and the don't care terms in decimal (Basically the first column of the implication table)
     vector <string> total_binary(total_decimal.size());
     vector<string> first_column(total_binary.size());
-    vector <string> pi(first_column.size());
+    vector <string> pi;
+    vector <string> epi;
 
     
     for (int i = 0; i < minterms.size(); i++) {
@@ -185,19 +186,28 @@ int main() {
         cout << first_column[i] << endl;
     }
 
-
    for (int i = 0; i < first_column.size(); i++) {
-      for (int j = 1; j < first_column.size(); j++)
-       if (isGreyCode(first_column[i], first_column[j]))
-           pi[i] = replace(first_column[i], first_column[j]);
+      for (int j = i+1; j < first_column.size(); j++)
+          if (isGreyCode(first_column[i], first_column[j]))
+              pi.push_back (replace(first_column[i], first_column[j]));
    }
 
-   cout << "The Prime Implicants are: " << endl;
+   cout << "The Prime Implicants (PIs) are: " << endl;
    for (int i = 0; i < pi.size(); i++) {
       cout << pi[i] << endl;
    }
 
+
+   for (int i = 0; i < pi.size(); i++) {
+       for (int j = i + 1; j < pi.size(); j++)
+           if (isGreyCode(pi[i], pi[j]))
+               epi.push_back(replace(pi[i], pi[j]));
+   }
     
+   cout << "The Essential Prime Implicants (EPIs) are: " << endl;
+   for (int i = 0; i < epi.size(); i++) {
+       cout << epi[i] << endl;
+   }
     return 0; 
 }
 
