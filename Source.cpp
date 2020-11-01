@@ -184,28 +184,12 @@ int main() {
         cout << pi[i] << endl;
     }
 
-    vector<int> temp_pi;
-
-    cout << "The  minterms of Prime Implicants are (correspondingly) : " << endl;
-    for (int i = 0; i < pi.size(); i++) {
-        unordered_set<int> pis;
-        getMinterms(pis, pi[i], 0, n - 1); 
-        for (int j = 0; j < total_decimal.size(); j++) {
-            for (int element : pis) {
-                if (element == total_decimal[j])
-                    temp_pi.push_back(element);
-
-            }
-        }
-        for (int element : pis)
-            cout << element << "  ";
-        cout << endl;
-    }
 
 // Finding EPIs 
 
     
     vector <int> temp_epi;
+    vector <int> min_epi;
 
    for (int i = 0; i < pi.size(); i++) {
        unordered_set<int> mins;
@@ -215,12 +199,14 @@ int main() {
                if (element == minterms[j])
                    temp_epi.push_back(element);
 
+
            }
         }
     }
 
    unordered_map<int, int> freq;
-   vector<int> not_covered, epi;
+   vector<int> not_covered ;
+       vector<string> epi;
 
    for (int i = 0; i < temp_epi.size(); ++i) {
        if (freq.find(temp_epi[i]) == freq.end())
@@ -231,20 +217,46 @@ int main() {
 
    for (pair<int, int> e : freq) {
        if (e.second == 1)
-           epi.push_back(e.first);
+           min_epi.push_back(e.first);
        else
            not_covered.push_back(e.first);
    }
 
-   cout << "EPIs are: " << endl;
-   for (int i = 0; i < epi.size(); i++) {
-       cout << epi[i] << endl;
+
+   vector<int> temp_pi;
+
+   cout << "The  minterms of Prime Implicants are (correspondingly) : " << endl;
+   for (int i = 0; i < pi.size(); i++) {
+       unordered_set<int> pis;
+       getMinterms(pis, pi[i], 0, n - 1);
+       for (int j = 0; j < total_decimal.size(); j++) {
+           for (int element : pis) {
+               if (element == total_decimal[j])
+                   temp_pi.push_back(element);
+               for (int k = 0; k < min_epi.size(); k++)
+                   if (element == min_epi[k])
+                       epi.push_back(pi[i]);
+           }
+       }
+       for (int element : pis)
+           cout << element << "  ";
+       cout << endl;
    }
 
+   cout << "Minterms of EPIs are: " << endl;
+   for (int i = 0; i < min_epi.size(); i++) {
+       cout << min_epi[i] << endl;
+   }
+
+   epi.erase(std::unique(epi.begin(), epi.end()), epi.end());
    cout << "The boolean expression of epis are: " << endl;
    for (int i = 0; i < epi.size(); i++)
-       cout << get_exp(pad(decimalTobinary(epi[i]), n), expression_var) << endl;
+       if (i == epi.size()-1)
+       cout << get_exp(epi[i], expression_var) << " ";
+       else
+        cout << get_exp(epi[i], expression_var) << " + ";
 
+   cout << endl;
    cout << "The minterms that are not covered by the essential PIs. are: " << endl;
    for (int i = 0; i < not_covered.size(); i++) {
        cout << not_covered[i] << endl;
