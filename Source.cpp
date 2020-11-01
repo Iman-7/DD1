@@ -9,7 +9,6 @@
 #include <unordered_map>
 using namespace std;
 
-bool validation(vector <int>, vector<int>);
 string decimalTobinary(int);
 string pad(string, int);
 bool isGreyCode(string, string);
@@ -20,7 +19,7 @@ string get_exp(string, const vector <string>);
 
 int main() {
 
-    ifstream file("C:/Users/Dell/Desktop/Fall 2020/Digital Design 1/Projects/case4.txt");
+    ifstream file("C:/Users/Dell/Desktop/Fall 2020/Digital Design 1/Projects/case5.txt");
     string line; //a string variable used to store the values seperated with commas
     string nn, mm, dd; // to recive the values from the file (nn: no. of variables, mm: minterms, dd: don't care terms)
 
@@ -74,9 +73,13 @@ int main() {
 
         }
 
+
         file.close();
 
     }
+
+    minterms.erase(std::unique(minterms.begin(), minterms.end()), minterms.end());
+    dontcare.erase(std::unique(dontcare.begin(), dontcare.end()), dontcare.end());
 
     //a vector to store the common elements between the minterms and the don't care terms vectors (if any)
     vector<int> val(minterms.size() + dontcare.size());
@@ -102,7 +105,6 @@ int main() {
         cout << endl;
         return 0;
     }
-
 
     vector<int> total_decimal(minterms.size() + dontcare.size()); // a vector that contains all the minterms and the don't care terms in decimal (Basically the first column of the implication table)
     vector <string> total_binary(total_decimal.size());
