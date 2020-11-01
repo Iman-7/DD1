@@ -1,4 +1,6 @@
 # DD1
+Team Members Info: Iman Attia - 900192510, Rawan Hamad - 900192388
+
 This C++ code automates Quine McCluskey algorithm and finds the following:
 
 The code reads in and evaluates a boolean function  using its minterms and don’t care terms as decimal numbers.
