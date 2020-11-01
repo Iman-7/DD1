@@ -1,8 +1,8 @@
 ﻿  Source.cpp
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(93,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(117,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(122,37): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(128,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(96,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(119,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(124,37): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(130,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Dell\source\repos\DD1-project\Source.cpp(137,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Dell\source\repos\DD1-project\Source.cpp(143,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Dell\source\repos\DD1-project\Source.cpp(144,31): warning C4018: '<': signed/unsigned mismatch
@@ -22,6 +22,6 @@ C:\Users\Dell\source\repos\DD1-project\Source.cpp(245,22): warning C4018: '<': s
 C:\Users\Dell\source\repos\DD1-project\Source.cpp(249,22): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Dell\source\repos\DD1-project\Source.cpp(261,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Dell\source\repos\DD1-project\Source.cpp(277,52): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(388,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Dell\source\repos\DD1-project\Source.cpp(399,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(312,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Dell\source\repos\DD1-project\Source.cpp(323,23): warning C4018: '<': signed/unsigned mismatch
   DD1-project.vcxproj -> C:\Users\Dell\source\repos\DD1-project\Debug\DD1-project.exe
