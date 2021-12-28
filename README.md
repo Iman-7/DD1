@@ -1,4 +1,4 @@
-# DD1
+# Quine McCluskey Algorithm Implementation using C++
 Team Members Info: Iman Attia - 900192510, Rawan Hamad - 900192388
 
 This C++ code automates Quine McCluskey algorithm and finds the following:
